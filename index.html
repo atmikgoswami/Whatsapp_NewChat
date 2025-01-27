@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Number Dialer</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function redirect(event) {
+            event.preventDefault(); 
+            
+            let number = document.getElementById("number").value.trim();
+
+            const regex = /^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/;
+
+            if (regex.test(number)) {
+                number = number.replace(/^\+91[\-\s]?|^0|^91/, ""); 
+                window.location.href = `https://wa.me/${number}`;
+            } else {
+                alert("Please enter a valid WhatsApp number.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <form>
+        <label for="number">Enter WhatsApp Number</label>
+        <input type="text" name="number" id="number" placeholder="Enter WhatsApp Number">
+        <input type="submit" value="GO" onclick="redirect(event)">
+    </form>
+</body>
+</html>
